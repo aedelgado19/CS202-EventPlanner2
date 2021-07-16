@@ -5,13 +5,19 @@
 using namespace std;
 
 void beach(Beach & b);
+void manage_beach(vector<Beach> & b_vtr);
 void shopping(Shopping & s);
+void manage_shopping(Array & shop);
 void restaurant(Restaurant & r);
+void manage_restaurant(CLL & rest);
 
 int main(){
   cout << "Welcome to Event Planner!" << endl;
   char choice = 'a';
+  char manage = 'a';
   vector<Beach> b_vtr;
+  CLL rest;
+  Array shop;
   
   do {
     cout << " " << endl;
@@ -20,6 +26,9 @@ int main(){
     cout << "1 - Beach Trip" << endl;
     cout << "2 - Shopping Trip" << endl;
     cout << "3 - Restaurant" << endl;
+    cout << " " << endl;
+    cout << "OR" << endl;
+    cout << "4 - Manage existing events" << endl;
     cout << "q - quit program" << endl;
     cin >> choice;
     cin.ignore(1000, '\n');
@@ -54,13 +63,15 @@ int main(){
       cin.get();
       Beach b(vtr, dir, food);
       b.read();
-      
-      cout << "Would you like to change any fields or look at more beach options? (y/n)" << endl;
-      cout << "> ";
-      cin.get(yn, 5);
-      cin.get();
-      if(strcmp(yn, "y") == 0){
-	beach(b);
+
+      while(strcmp(yn, "n") != 0){
+	cout << "Would you like to change any fields or look at more beach options? (y/n)" << endl;
+	cout << "> ";
+	cin.get(yn, 5);
+	cin.get();
+	if(strcmp(yn, "y") == 0){
+	  beach(b);
+	}
       }
     }
     
@@ -74,7 +85,6 @@ int main(){
       vector<string> items;
       int bg;
       char yn[5];
-      cout << "HI" << endl;
       cout << "Enter the amount of stores you would like to visit." << endl;
       cin >> a;
       cin.get();
@@ -101,13 +111,15 @@ int main(){
 
       Shopping s(shops, items, bg);
       s.read();
-      cout << "Would you like to change any fields or look at more shopping options? (y/n)" << endl;
-      cout << "> ";
-      cin.get(yn, 5);
-      cin.get();
-      if(strcmp(yn, "y") == 0){
-	shopping(s);
-      }
+      while(strcmp(yn, "n") != 0){
+	cout << "Would you like to change any fields or look at more shopping options? (y/n)" << endl;
+	cout << "> ";
+	cin.get(yn, 5);
+	cin.get();
+	if(strcmp(yn, "y") == 0){
+	  shopping(s);
+	}
+      } 
     }
 
     //restaurant
@@ -115,12 +127,34 @@ int main(){
       Restaurant r;
       char yn[5];
       r.read();
-      cout << "Would you like to change or view more restaurant options? (y/n)" << endl;
-      cout << "> ";
-      cin.get(yn, 5);
-      cin.get();
-      if(strcmp(yn, "y") == 0){
-	restaurant(r);
+
+      while(strcmp(yn, "n") != 0){
+	cout << "Would you like to change or view more restaurant options? (y/n)" << endl;
+	cout << "> ";
+	cin.get(yn, 5);
+	cin.get();
+	if(strcmp(yn, "y") == 0){
+	  restaurant(r);
+	}
+      }
+    }
+
+    //manage existing
+    else if(choice == '4'){
+      cout << "Manage which type of event?" << endl;
+      cout << "1 - Beach" << endl;
+      cout << "2 - Shopping" << endl;
+      cout << "3 - Restaurant" << endl;
+      cin >> manage;
+      cin.ignore(1000, '\n');
+      if(manage == '1'){
+	manage_beach(b_vtr);
+      } else if (manage == '2'){
+	manage_shopping(shop);
+      } else if (manage == '3'){
+	manage_restaurant(rest);
+      } else {
+	cout << "That was not one of the choices." << endl;
       }
     }
   } while(choice != 'q'); 
@@ -128,6 +162,8 @@ int main(){
   
   return 0;
 }
+
+// ******************************** BEACH SELECTIONS *************************************
 
 void beach(Beach & b){
   char choice;
@@ -196,6 +232,7 @@ void beach(Beach & b){
   
 }
 
+// ******************************** SHOPPING SELECTIONS *************************************
 void shopping(Shopping & s){
   char i;
   vector<string> to_add1;
@@ -277,17 +314,15 @@ void shopping(Shopping & s){
   }
 }
 
+// ******************************** RESTAURANT SELECTIONS *************************************
 void restaurant(Restaurant & r){
-  CLL rest;
   char c;
   char d;
-  char name[50];
   
   cout << "Select an option." << endl;
   cout << "1 - Get the contact info of the restaurant." << endl;
   cout << "2 - Write a yelp review of this restaurant." << endl;
   cout << "3 - Display all restaurant details." << endl;
-  cout << "4 - Data structures stuff" << endl;
   cout << "> ";
   cin >> c;
   cin.get();
@@ -297,39 +332,74 @@ void restaurant(Restaurant & r){
     r.write_yelp_review();
   } else if (c == '3'){
     r.display();
-  } else if (c == '4'){
-    cout << "Select an option. " << endl;
-    cout << "1 - add another restaurant" << endl;
-    cout << "2 - remove a restaurant" << endl;
-    cout << "3 - display all restaurants" << endl;
-    cout << "4 - remove all restaurants" << endl;
-    cin >> d;
+  } else {
+    cout << "That was not one of the options." << endl;
+  }
+}
+
+
+//manage beaches
+void manage_beach(vector<Beach> & b_vtr){
+  char c;
+  cout << "Select an option. " << endl;
+  cout << "1 - add another beach trip" << endl;
+  cout << "2 - remove a beach trip" << endl;
+  cout << "3 - display all beach trips" << endl;
+  cout << "4 - remove all beach trips" << endl;
+  cin >> c;
+  cin.ignore(1000, '\n');
+}
+
+//manage shopping
+void manage_shopping(Array & shop){
+  char c;
+  
+  cout << "Select an option. " << endl;
+  cout << "1 - add another shopping trip" << endl;
+  cout << "2 - remove a shopping trip" << endl;
+  cout << "3 - display all shopping trips" << endl;
+  cout << "4 - remove all shopping trips" << endl;
+  cin >> c;
+  cin.ignore(1000, '\n');
+
+  if(c == '1'){
+
+  }
+
+}
+
+//manage restaurants
+void manage_restaurant(CLL & rest){
+  char c;
+  char name[50];
+  
+  cout << "Select an option. " << endl;
+  cout << "1 - add another restaurant" << endl;
+  cout << "2 - remove a restaurant" << endl;
+  cout << "3 - display all restaurants" << endl;
+  cout << "4 - remove all restaurants" << endl;
+  cin >> c;
+  cin.ignore(1000, '\n');
+
+  if(c == '1'){
+    Restaurant n;
+    n.read();
+    rest.insert(n);
+  }
+
+  else if(c == '2'){
+    cout << "Enter the name of the restaurant you would like to remove." << endl;
+    cout << "> ";
+    cin.get(name, 50);
     cin.get();
+    rest.remove(name);
+  }
 
-    if(c == '1'){
-      Restaurant n;
-      n.read();
-      rest.insert(n);
-    }
+  else if(c == '3'){
+    rest.display();
+  }
 
-    else if(c == '2'){
-      cout << "Enter the name of the restaurant you would like to remove." << endl;
-      cout << "> ";
-      cin.get(name, 50);
-      cin.get();
-      rest.remove(name);
-    }
-
-    else if(c == '3'){
-      rest.display();
-    }
-
-    else if(c == '4'){
-      rest.remove_all();
-    }
-
-    else {
-      cout << "That was not one of the options." << endl;
-    }
-  }  
+  else if(c == '4'){
+    rest.remove_all();
+  }
 }

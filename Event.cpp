@@ -55,11 +55,11 @@ void Time::display() const {
 
 Event::Event() : Time(){
   street_num = 0;
-  street = nullptr;
-  state = nullptr;
-  city = nullptr;
-  name = nullptr;
-  people_going = nullptr;
+  street = new char[30];
+  state = new char[30];
+  city = new char[30];
+  name = new char[50];
+  people_going = new char[100];
 }
 
 //destructor to deallocate all dynamic memory
@@ -122,6 +122,8 @@ void Event::read(){
 
   //set the info
   street_num = num;
+  std::cout << "str: "<< str << std::endl;
+  std::cout << "Street: " << street << std::endl;
   strcpy(street, str);
   strcpy(city, c);
   strcpy(state, st);
@@ -236,7 +238,7 @@ void Beach::check_weather(){
 
 //******************* SHOPPING FUNCTIONS *****************
 
-Shopping::Shopping(){
+Shopping::Shopping() : Event(){
 
 }
 

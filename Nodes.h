@@ -62,6 +62,6 @@ private:
   void remove(C_Node *& cur, std::string to_remove);
   void display(C_Node * cur); //recursive display
   void remove_all(C_Node * cur);
-  void cp(C_Node *& cur, const C_Node * source, const C_Node * s_rear);
+  void cp(C_Node *& cur, C_Node * source, C_Node * s_rear);
   C_Node * rear;
 };

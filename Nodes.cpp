@@ -195,7 +195,7 @@ CLL::CLL(const CLL & source){
 }
 
 //recursive copy for copy constructor
-void CLL::cp(C_Node *& cur, const C_Node * source, const C_Node * s_rear){
+void CLL::cp(C_Node *& cur, C_Node * source, C_Node * s_rear){
   if(source->go_next() == s_rear){ //last node
     cur = new C_Node(*source);
     cur->set_next(rear);

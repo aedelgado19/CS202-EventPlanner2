@@ -30,6 +30,7 @@ public:
   void remove(A_Node *& to_remove); //remove a node
   void display(); //display the whole DS
   void remove_all(); //remove all nodes
+  A_Node * find_shop(char* name);
 private:
   void insert(A_Node *& current, A_Node *& to_add);
   void remove(A_Node *& current, A_Node *& to_remove);

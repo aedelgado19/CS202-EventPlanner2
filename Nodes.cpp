@@ -161,6 +161,10 @@ void Array::remove_all(A_Node * current){
   remove_all(current);
 }
 
+A_Node* find_shop(char* name){
+  
+}
+
 // ******************* C_NODE FUNCTIONS **************
 
 //constructor

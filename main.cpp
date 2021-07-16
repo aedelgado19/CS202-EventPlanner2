@@ -4,6 +4,9 @@
 #include <vector>
 using namespace std;
 
+Beach & setup_b(); //make new beach
+Shopping & setup_s(); //make new shopping
+Restaurant & setup_r(); //make new restaurant
 void beach(Beach & b);
 void manage_beach(vector<Beach> & b_vtr);
 void shopping(Shopping & s);
@@ -35,110 +38,18 @@ int main(){
     
     //beach
     if(choice == '1'){
-      int a = 0;
-      string word;
-      char food[150];
-      char dir[500];
-      vector<string> vtr;
-      char yn[5];
-      cout << "Enter the amount of items you would like to " << endl;
-      cout << "add to the list of things to bring to the beach" << endl;
-      cout << "> ";
-      cin >> a;
-      cin.ignore(1000, '\n');
-      cout << "Enter in each item (1 at a time, separated by a newline)" << endl;
-
-      for(int i = 0; i < a; i++){
-	cout << "> ";
-	getline(cin, word);
-	vtr.push_back(word);
-      }
-      cout << "Please enter what you plan to do for food (go out, bring lunch, etc)." << endl;
-      cout << "> ";
-      cin.get(food, 150);
-      cin.get();
-      cout << "Enter the directions to the beach: " << endl;
-      cout << "> ";
-      cin.get(dir, 500);
-      cin.get();
-      Beach b(vtr, dir, food);
-      b.read();
-
-      while(strcmp(yn, "n") != 0){
-	cout << "Would you like to change any fields or look at more beach options? (y/n)" << endl;
-	cout << "> ";
-	cin.get(yn, 5);
-	cin.get();
-	if(strcmp(yn, "y") == 0){
-	  beach(b);
-	}
-      }
+      setup_b();
     }
     
     //shopping
     else if (choice == '2'){
-      int a = 0;
-      int b = 0;
-      string word;
-      string item;
-      vector<string> shops;
-      vector<string> items;
-      int bg;
-      char yn[5];
-      cout << "Enter the amount of stores you would like to visit." << endl;
-      cin >> a;
-      cin.get();
-      cout << "Enter each store in 1 at a time, separated by a newline." << endl;
-      for(int i = 0; i < a; i++){
-	cout << "> ";
-	getline(cin, word);
-	shops.push_back(word);
-      }
-      cout << "Enter how many items you would like to add to your shopping list" << endl;
-      cin >> b;
-      cin.get();
-      cout << "Enter each item in 1 at a time, separated by a newline." << endl;
-      for(int j = 0; j < b; j++){
-	cout << "> ";
-	getline(cin, item);
-	items.push_back(item);
-      }
-
-      cout << "What is your budget for this shopping trip?" << endl;
-      cout << "> ";
-      cin >> bg;
-      cin.get();
-
-      Shopping s(shops, items, bg);
-      s.read();
-      while(strcmp(yn, "n") != 0){
-	cout << "Would you like to change any fields or look at more shopping options? (y/n)" << endl;
-	cout << "> ";
-	cin.get(yn, 5);
-	cin.get();
-	if(strcmp(yn, "y") == 0){
-	  shopping(s);
-	}
-      } 
+      setup_s();
     }
 
     //restaurant
     else if(choice == '3'){
-      Restaurant r;
-      char yn[5];
-      r.read();
-
-      while(strcmp(yn, "n") != 0){
-	cout << "Would you like to change or view more restaurant options? (y/n)" << endl;
-	cout << "> ";
-	cin.get(yn, 5);
-	cin.get();
-	if(strcmp(yn, "y") == 0){
-	  restaurant(r);
-	}
-      }
+      setup_r();
     }
-
     //manage existing
     else if(choice == '4'){
       cout << "Manage which type of event?" << endl;
@@ -162,6 +73,114 @@ int main(){
   
   return 0;
 }
+
+Beach & setup_b(){
+  int a = 0;
+  string word;
+  char food[150];
+  char dir[500];
+  vector<string> vtr;
+  char yn[5];
+  cout << "Enter the amount of items you would like to " << endl;
+  cout << "add to the list of things to bring to the beach" << endl;
+  cout << "> ";
+  cin >> a;
+  cin.ignore(1000, '\n');
+  cout << "Enter in each item (1 at a time, separated by a newline)" << endl;
+
+  for(int i = 0; i < a; i++){
+    cout << "> ";
+    getline(cin, word);
+    vtr.push_back(word);
+  }
+  cout << "Please enter what you plan to do for food (go out, bring lunch, etc)." << endl;
+  cout << "> ";
+  cin.get(food, 150);
+  cin.get();
+  cout << "Enter the directions to the beach: " << endl;
+  cout << "> ";
+  cin.get(dir, 500);
+  cin.get();
+  Beach b(vtr, dir, food);
+  b.read();
+
+  while(strcmp(yn, "n") != 0){
+    cout << "Would you like to change any fields or look at more beach options? (y/n)" << endl;
+    cout << "> ";
+    cin.get(yn, 5);
+    cin.get();
+    if(strcmp(yn, "y") == 0){
+      beach(b);
+    }
+  }
+
+}
+
+Shopping & setup_s(){
+  int a = 0;
+  int b = 0;
+  string word;
+  string item;
+  vector<string> shops;
+  vector<string> items;
+  int bg;
+  char yn[5];
+  cout << "Enter the amount of stores you would like to visit." << endl;
+  cin >> a;
+  cin.get();
+  cout << "Enter each store in 1 at a time, separated by a newline." << endl;
+  for(int i = 0; i < a; i++){
+    cout << "> ";
+    getline(cin, word);
+    shops.push_back(word);
+  }
+  cout << "Enter how many items you would like to add to your shopping list" << endl;
+  cin >> b;
+  cin.get();
+  cout << "Enter each item in 1 at a time, separated by a newline." << endl;
+  for(int j = 0; j < b; j++){
+    cout << "> ";
+    getline(cin, item);
+    items.push_back(item);
+  }
+
+  cout << "What is your budget for this shopping trip?" << endl;
+  cout << "> ";
+  cin >> bg;
+  cin.get();
+
+  Shopping s(shops, items, bg);
+  s.read();
+  while(strcmp(yn, "n") != 0){
+    cout << "Would you like to change any fields or look at more shopping options? (y/n)" << endl;
+    cout << "> ";
+    cin.get(yn, 5);
+    cin.get();
+    if(strcmp(yn, "y") == 0){
+      shopping(s);
+    }
+  }
+  return s;
+}
+
+Restaurant & setup_r(){
+  Restaurant r;
+  char yn[5];
+  r.read();
+
+  while(strcmp(yn, "n") != 0){
+    cout << "Would you like to change or view more restaurant options? (y/n)" << endl;
+    cout << "> ";
+    cin.get(yn, 5);
+    cin.get();
+    if(strcmp(yn, "y") == 0){
+      restaurant(r);
+    }
+  }
+}
+
+
+
 
 // ******************************** BEACH SELECTIONS *************************************
 
@@ -353,6 +372,7 @@ void manage_beach(vector<Beach> & b_vtr){
 //manage shopping
 void manage_shopping(Array & shop){
   char c;
+  char name[50];
   
   cout << "Select an option. " << endl;
   cout << "1 - add another shopping trip" << endl;
@@ -363,7 +383,16 @@ void manage_shopping(Array & shop){
   cin.ignore(1000, '\n');
 
   if(c == '1'){
-
+    Shopping s = setup_s();
+  } else if (c == '2'){
+    cout << "What is the name of the shopping event you would like to remove?" << endl;
+    cin.get(name, 50);
+    cin.get();
+    A_Node * found = shop.find_shop(name);
+    if(found) shop.remove(found);
+    else {
+      cout << "Could not find a Shopping event by that name." << endl;
+    }
   }
 
 }

@@ -11,7 +11,8 @@ void restaurant(Restaurant & r);
 int main(){
   cout << "Welcome to Event Planner!" << endl;
   char choice = 'a';
-
+  vector<Beach> b_vtr;
+  
   do {
     cout << " " << endl;
     cout << "-----------------------" << endl;
@@ -73,7 +74,7 @@ int main(){
       vector<string> items;
       int bg;
       char yn[5];
-
+      cout << "HI" << endl;
       cout << "Enter the amount of stores you would like to visit." << endl;
       cin >> a;
       cin.get();

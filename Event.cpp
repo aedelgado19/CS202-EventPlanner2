@@ -259,7 +259,6 @@ void Shopping::remove_stores(std::vector<std::string> to_remove){
       }
     }  
   }
-
 }
 
 //add items to buy to the list

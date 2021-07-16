@@ -35,8 +35,8 @@ void A_Node::set_next(A_Node* node){
 }
 
 //hash based on size of items and stores in vector and name of event
-int A_Node::hash(A_Node & node){
-  return pow((node.stores.size() + node.what_to_buy.size()), strlen(node.name));
+int A_Node::hash(int size){
+  return (int) pow((stores.size() + what_to_buy.size()), strlen(name)) % size;
 }
 
 // ********************* ARRAY FUNCTIONS *******************
@@ -85,7 +85,7 @@ Array::~Array(){
 
 //insert node wrapper
 void Array::insert(A_Node *& to_add){
-  int index = hash(to_add);
+  int index = to_add->hash(size);
   insert(head[index], to_add);
 }
 
@@ -106,7 +106,7 @@ void Array::insert(A_Node *& current, A_Node *& to_add){
   
 //wrapper to remove a node
 void Array::remove(A_Node *& to_remove){
-  int index = hash(to_remove);
+  int index = to_remove->hash(size);
   if(!head[index]) return;
   remove(head[index], to_remove);
 }
@@ -191,8 +191,17 @@ CLL::CLL(){
 
 //copy constructor
 CLL::CLL(const CLL & source){
-  if(source->next == rear){
-    
+  cp(rear, source.rear, source.rear);
+}
+
+//recursive copy for copy constructor
+void CLL::cp(C_Node *& cur, const C_Node * source, const C_Node * s_rear){
+  if(source->go_next() == s_rear){ //last node
+    cur = new C_Node(*source);
+    cur->set_next(rear);
+  } else { //all other nodes
+    cur = new C_Node(*source);
+    cp(cur->go_next(), source->go_next(), s_rear);
   }
 }
 
@@ -209,11 +218,16 @@ CLL::~CLL(){
 }
 
 //insert a node
-void CLL::insert(const Restaurant & to_add){
-  C_Node * temp = rear->go_next()->go_next();
-  C_Node * new_node = new C_Node(to_add);
-  rear->set_next(new_node);
-  new_node->set_next(temp);
+void CLL::insert(Restaurant & to_add){
+  C_Node * a = new C_Node(to_add);
+  if(!rear){
+    rear = a;
+    a->set_next(rear);
+  } else {
+    C_Node * temp = rear->go_next()->go_next();
+    rear->set_next(a);
+    a->set_next(temp);
+  }
 }
 
 //wrapper to remove a node
@@ -258,3 +272,4 @@ void CLL::remove_all(C_Node * cur){
     cur = temp;
   }
 }
+

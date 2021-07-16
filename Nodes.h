@@ -16,7 +16,7 @@ public:
   A_Node *& go_next(); //move through array of LL 
   void display_data(char* name); //display data for a particular node
   void set_next(A_Node * node); //set next
-  int hash(A_Node & node);
+  int hash(int size);
 protected:
   A_Node* next;
 };
@@ -54,7 +54,7 @@ public:
   CLL(); //constructor
   CLL(const CLL & source); //copy constructor
   ~CLL(); //destructor
-  void insert(const Restaurant & to_add); //insert a node
+  void insert(Restaurant & to_add); //insert a node
   void remove(char* to_remove); //remove a node
   void display(); //wrapper to display all nodes
   void remove_all(); //remove all nodes;
@@ -62,5 +62,6 @@ private:
   void remove(C_Node *& cur, std::string to_remove);
   void display(C_Node * cur); //recursive display
   void remove_all(C_Node * cur);
+  void cp(C_Node *& cur, const C_Node * source, const C_Node * s_rear);
   C_Node * rear;
 };

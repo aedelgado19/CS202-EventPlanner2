@@ -161,8 +161,23 @@ void Array::remove_all(A_Node * current){
   remove_all(current);
 }
 
-A_Node* find_shop(char* name){
-  
+//sees if the name passed in exists in the DS
+A_Node* Array::find_shop(char* name){
+  A_Node * temp = nullptr;
+  std::string str(name);
+  for(int i = 0; i < size; i++){
+    temp = head[i];
+    if(temp->compare(str)){
+      return temp;
+    }
+    while(temp->go_next()){
+      temp = temp->go_next();
+      if(temp->compare(str)){
+	return temp;
+      }
+    }
+  }
+  return nullptr;
 }
 
 // ******************* C_NODE FUNCTIONS **************

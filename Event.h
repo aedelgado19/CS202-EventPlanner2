@@ -63,14 +63,15 @@ protected:
 };
 
 class Shopping : public Event {
- public:
-   Shopping(); //constructor
+public:
+  Shopping(); //constructor
   Shopping(std::vector<std::string> stores, std::vector<std::string> buy_list, int budget);
   void add_stores(std::vector<std::string> to_add); //add stores to the list
   void remove_stores(std::vector<std::string> to_remove); //remove stores from the list
   void add_items(std::vector<std::string> to_add); //add items to the list
   void remove_items(std::vector<std::string> to_remove); //remove items from the list
-   void display(); //display shopping details
+  void display(); //display shopping details
+  bool compare(std::string n);
  protected:
    std::vector<std::string> stores; //what stores to visit
    std::vector<std::string> what_to_buy; //shopping list

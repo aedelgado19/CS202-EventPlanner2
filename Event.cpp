@@ -301,6 +301,10 @@ void Shopping::display(){
   Event::display();
 }
 
+bool Shopping::compare(std::string n){
+  return n == name;
+}
+
 //******************* RESTAURANT FUNCTIONS *****************
 
 //initialization list to initialize all fields and call parent constructor

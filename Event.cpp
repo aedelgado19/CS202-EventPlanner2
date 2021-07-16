@@ -236,6 +236,10 @@ void Beach::check_weather(){
 
 //******************* SHOPPING FUNCTIONS *****************
 
+Shopping::Shopping(){
+
+}
+
 Shopping::Shopping(std::vector<std::string> s, std::vector<std::string> buy_list, int b){
   stores = s;
   what_to_buy = buy_list;

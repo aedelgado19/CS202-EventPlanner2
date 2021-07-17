@@ -7,7 +7,7 @@
    the Shopping class is an array of LLL's, and the Restaurant
    class is a CLL.
 
-   Last updated: July 13, 2021
+   Last updated: July 16, 2021
 */
 
 #include "Nodes.h"

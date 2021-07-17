@@ -1,3 +1,12 @@
+/* Author: Allison Delgado
+   Class: CS 202 Summer 2021
+   main.cpp is a testing site for beaches, shopping trips, and
+   restaurants. For help with testing, type 0 in the main screen
+   when you run it.
+
+   Last updated July 16, 2021
+ */
+
 #include <iostream>
 #include "Nodes.h"
 #include <cstring>
@@ -97,7 +106,6 @@ int main(){
       cout << "data structures." << endl;
     } 
   } while(choice != 'q'); 
-
   return 0;
 }
 
@@ -143,7 +151,6 @@ void setup_b(vector<Beach> & b_vtr){
       beach(b);
     }
   }
-  
 }
 
 void setup_s(Array & shop){

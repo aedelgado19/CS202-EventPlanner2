@@ -52,9 +52,9 @@ public:
   Beach(); //constructor
   Beach(const Beach & source); //copy constructor
   ~Beach(); //destructor
-  Beach(std::vector<std::string> items, char* dir, char* f);
-  void add_items(std::vector<std::string> new_items); //add items to a vector of what to bring
-  void remove_items(std::vector<std::string> to_remove); //remove items from the vector
+  Beach(std::vector<std::string> &items, char* dir, char* f);
+  void add_items(std::vector<std::string>& new_items); //add items to a vector of what to bring
+  void remove_items(std::vector<std::string>& to_remove); //remove items from the vector
   void display(); //display beach plan info
   void check_weather(); //displays a pretend weather forecast
   bool compare(std::string n);
@@ -67,11 +67,11 @@ protected:
 class Shopping : public Event {
 public:
   Shopping(); //constructor
-  Shopping(std::vector<std::string> stores, std::vector<std::string> buy_list, int budget);
-  void add_stores(std::vector<std::string> to_add); //add stores to the list
-  void remove_stores(std::vector<std::string> to_remove); //remove stores from the list
-  void add_items(std::vector<std::string> to_add); //add items to the list
-  void remove_items(std::vector<std::string> to_remove); //remove items from the list
+  Shopping(std::vector<std::string>& stores, std::vector<std::string>& buy_list, int budget);
+  void add_stores(std::vector<std::string> &to_add); //add stores to the list
+  void remove_stores(std::vector<std::string>& to_remove); //remove stores from the list
+  void add_items(std::vector<std::string>& to_add); //add items to the list
+  void remove_items(std::vector<std::string>& to_remove); //remove items from the list
   void display(); //display shopping details
   bool compare(std::string n);
   int hash(int size);

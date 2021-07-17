@@ -189,7 +189,7 @@ Beach::Beach(const Beach & source){
 }
 
 //set up beach fields
-Beach::Beach(std::vector<std::string> items, char* dir, char* f){
+Beach::Beach(std::vector<std::string>& items, char* dir, char* f){
   directions = new char[500];
   food_plans = new char[150];
   items_to_bring = items;
@@ -198,14 +198,14 @@ Beach::Beach(std::vector<std::string> items, char* dir, char* f){
 }
 
 //passed in a char array of new items to add, adds to vector
-void Beach::add_items(std::vector<std::string> new_items){
+void Beach::add_items(std::vector<std::string> &new_items){
   for(std::vector<std::string>::iterator i = new_items.begin(); i!=new_items.end(); ++i){
     items_to_bring.push_back(*i);
   }
 }
 
 //passed in a char array of items to remove, removes from vector
-void Beach::remove_items(std::vector<std::string> to_remove){
+void Beach::remove_items(std::vector<std::string>& to_remove){
   for(std::vector<std::string>::iterator j = to_remove.begin(); j!=to_remove.end(); ++j){
     for(std::vector<std::string>::iterator i = items_to_bring.begin(); i!=items_to_bring.end(); ++i){
       if((*i) == (*j)){
@@ -250,21 +250,21 @@ Shopping::Shopping() : Event(){
 
 }
 
-Shopping::Shopping(std::vector<std::string> s, std::vector<std::string> buy_list, int b){
+Shopping::Shopping(std::vector<std::string> & s, std::vector<std::string>& buy_list, int b){
   stores = s;
   what_to_buy = buy_list;
   budget = b;
 }
 
 //push back new items to the list of stores to visit
-void Shopping::add_stores(std::vector<std::string> to_add){
+void Shopping::add_stores(std::vector<std::string>& to_add){
   for(std::vector<std::string>::iterator i = to_add.begin(); i!=to_add.end(); ++i){
     stores.push_back(*i);
   }
 }
 
 //remove stores from the list
-void Shopping::remove_stores(std::vector<std::string> to_remove){
+void Shopping::remove_stores(std::vector<std::string> &to_remove){
   for(std::vector<std::string>::iterator j = to_remove.begin(); j!=to_remove.end(); ++j){
     for(std::vector<std::string>::iterator i = stores.begin(); i!=stores.end(); ++i){
       if((*i) == (*j)){
@@ -276,14 +276,14 @@ void Shopping::remove_stores(std::vector<std::string> to_remove){
 }
 
 //add items to buy to the list
-void Shopping::add_items(std::vector<std::string> to_add){
+void Shopping::add_items(std::vector<std::string> &to_add){
   for(std::vector<std::string>::iterator i = to_add.begin(); i!=to_add.end(); ++i){
     what_to_buy.push_back(*i);
   }
 }
 
 //remove items to buy from the list
-void Shopping::remove_items(std::vector<std::string> to_remove){
+void Shopping::remove_items(std::vector<std::string> &to_remove){
   for(std::vector<std::string>::iterator j = to_remove.begin(); j!=to_remove.end(); ++j){
     for(std::vector<std::string>::iterator i = what_to_buy.begin(); i!=what_to_buy.end(); ++i){
       if((*i) == (*j)){

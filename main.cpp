@@ -97,7 +97,7 @@ int main(){
       cout << "data structures." << endl;
     } 
   } while(choice != 'q'); 
-  
+
   return 0;
 }
 
@@ -281,7 +281,6 @@ void beach(Beach & b){
   else {
     cout << "That was not one of the options." << endl;
   }
-  
 }
 
 // ******************************** SHOPPING SELECTIONS *************************************

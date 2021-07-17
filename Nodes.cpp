@@ -102,6 +102,7 @@ void Array::insert(A_Node *& current, A_Node *& to_add){
   
 //wrapper to remove a node
 void Array::remove(A_Node *& to_remove){
+  if(is_empty() == true) return;
   int index = to_remove->hash(size);
   if(!head[index]) return;
   remove(head[index], to_remove);
@@ -122,6 +123,7 @@ void Array::remove(A_Node *& current, A_Node *& to_remove){
 
 //wrapper to display the array of LLL
 void Array::display(){
+  if(is_empty() == true) return;
   display(0);
 }
 
@@ -141,6 +143,7 @@ void Array::display(int index){
 
 //wrapper to remove all nodes
 void Array::remove_all(){
+  if(is_empty() == true) return;
   A_Node * current = nullptr;
   for(int i = 0; i < size; i++){
     current = head[i];
@@ -255,6 +258,7 @@ void CLL::insert(Restaurant & to_add){
 
 //wrapper to remove a node
 void CLL::remove(char* to_remove){
+  if(!rear) return;
   std::string name = to_remove;
   remove(rear, name);
 }
@@ -279,6 +283,7 @@ void CLL::remove(C_Node *& cur, std::string name){
 
 //wrapper to display all nodes
 void CLL::display(){
+  if(!rear) return;
   display(rear);
 }
 
@@ -293,6 +298,7 @@ void CLL::display(C_Node* cur){
 
 //wrapper to remove all nodes
 void CLL::remove_all(){
+  if(!rear) return;
   remove_all(rear);
 }
 

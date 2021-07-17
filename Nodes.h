@@ -7,7 +7,6 @@
   Last updated: July 6, 2021
  */
 #include "Event.h"
-#include <math.h>
 
 class A_Node : public Shopping {
 public:
@@ -16,7 +15,7 @@ public:
   A_Node *& go_next(); //move through array of LL 
   void display_data(char* name); //display data for a particular node
   void set_next(A_Node * node); //set next
-  int hash(int size);
+
 protected:
   A_Node* next;
 };
@@ -26,7 +25,7 @@ public:
   Array(int s = 5); //set size of array
   Array(const Array & source); //copy constructor
   ~Array(); //destructor
-  void insert(A_Node *& to_add); //add a node
+  void insert(Shopping & to_add); //add a node
   void remove(A_Node *& to_remove); //remove a node
   void display(); //display the whole DS
   void remove_all(); //remove all nodes

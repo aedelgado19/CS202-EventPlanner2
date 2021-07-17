@@ -312,6 +312,10 @@ void Shopping::display(){
 bool Shopping::compare(std::string n){
   return n == name;
 }
+//hash based on size of items and stores in vector and name of event                                      
+int Shopping::hash(int size){
+  return (int) pow((stores.size() + what_to_buy.size()), strlen(name)) % size;
+}
 
 //******************* RESTAURANT FUNCTIONS *****************
 

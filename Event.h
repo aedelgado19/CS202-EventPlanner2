@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 class Time {
 public:
   Time();
@@ -73,6 +74,7 @@ public:
   void remove_items(std::vector<std::string> to_remove); //remove items from the list
   void display(); //display shopping details
   bool compare(std::string n);
+  int hash(int size);
  protected:
    std::vector<std::string> stores; //what stores to visit
    std::vector<std::string> what_to_buy; //shopping list

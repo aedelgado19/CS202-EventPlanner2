@@ -5,8 +5,8 @@
 using namespace std;
 
 void setup_b(vector<Beach> & b_vtr); //make new beach
-void setup_s(); //make new shopping
-void setup_r(); //make new restaurant
+void setup_s(Array & shop); //make new shopping
+void setup_r(CLL & rest); //make new restaurant
 void beach(Beach & b);
 void manage_beach(vector<Beach> & b_vtr);
 void shopping(Shopping & s);
@@ -48,12 +48,12 @@ int main(){
     
     //shopping
     else if (choice == '2'){
-      setup_s();
+      setup_s(shop);
     }
 
     //restaurant
     else if(choice == '3'){
-      setup_r();
+      setup_r(rest);
     }
     //manage existing
     else if(choice == '4'){
@@ -135,7 +135,7 @@ void setup_b(vector<Beach> & b_vtr){
   
 }
 
-void setup_s(){
+void setup_s(Array & shop){
   int a = 0;
   int b = 0;
   string word;
@@ -180,9 +180,10 @@ void setup_s(){
       shopping(s);
     }
   }
+  shop.insert(s);
 }
 
-void setup_r(){
+void setup_r(CLL & rest){
   Restaurant r;
   char yn[5];
   r.read();
@@ -197,6 +198,7 @@ void setup_r(){
       restaurant(r);
     }
   }
+  rest.insert(r);
 }
 
 
@@ -445,7 +447,7 @@ void manage_shopping(Array & shop){
   cin.ignore(1000, '\n');
 
   if(c == '1'){
-    setup_s();
+    setup_s(shop);
   } else if (c == '2'){
     cout << "What is the name of the shopping event you would like to remove?" << endl;
     cin.get(name, 50);

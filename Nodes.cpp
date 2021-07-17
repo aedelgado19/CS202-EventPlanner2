@@ -34,11 +34,6 @@ void A_Node::set_next(A_Node* node){
   next = node;
 }
 
-//hash based on size of items and stores in vector and name of event
-int A_Node::hash(int size){
-  return (int) pow((stores.size() + what_to_buy.size()), strlen(name)) % size;
-}
-
 // ********************* ARRAY FUNCTIONS *******************
 
 //constructor with args
@@ -84,9 +79,10 @@ Array::~Array(){
 }
 
 //insert node wrapper
-void Array::insert(A_Node *& to_add){
-  int index = to_add->hash(size);
-  insert(head[index], to_add);
+void Array::insert(Shopping & to_add){
+  A_Node * a = new A_Node(to_add);
+  int index = to_add.hash(size);
+  insert(head[index], a);
 }
 
 //recursive insert

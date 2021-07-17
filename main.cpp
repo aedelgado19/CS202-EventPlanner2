@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 
-void setup_b(); //make new beach
+void setup_b(vector<Beach> & b_vtr); //make new beach
 void setup_s(); //make new shopping
 void setup_r(); //make new restaurant
 void beach(Beach & b);
@@ -13,6 +13,11 @@ void shopping(Shopping & s);
 void manage_shopping(Array & shop);
 void restaurant(Restaurant & r);
 void manage_restaurant(CLL & rest);
+
+//vector functions:
+void rm_vtr(vector<Beach> & b_vtr, char* name);
+void rm_all(vector<Beach> & b_vtr);
+void d_vtr(vector<Beach> & b_vtr);
 
 int main(){
   cout << "Welcome to Event Planner!" << endl;
@@ -31,14 +36,14 @@ int main(){
     cout << "3 - Restaurant" << endl;
     cout << " " << endl;
     cout << "OR" << endl;
-    cout << "4 - Manage existing events" << endl;
+    cout << "4 - Manage existing events (display all, delete, add, etc)" << endl;
     cout << "q - quit program" << endl;
     cin >> choice;
     cin.ignore(1000, '\n');
     
     //beach
     if(choice == '1'){
-      setup_b();
+      setup_b(b_vtr);
     }
     
     //shopping
@@ -59,10 +64,22 @@ int main(){
       cin >> manage;
       cin.ignore(1000, '\n');
       if(manage == '1'){
+	if(b_vtr.size() == 0) {
+	  cout << "You have not made any beaches yet." << endl;
+	  break;
+	}
 	manage_beach(b_vtr);
       } else if (manage == '2'){
+	if(shop.is_empty() == true) {
+	  cout << "You have not made any shopping trips yet." << endl;
+	  break;
+	}
 	manage_shopping(shop);
       } else if (manage == '3'){
+	if(rest.is_empty() == true){
+	  cout << "You have not made any restaurants yet." << endl;
+	  break;
+	}
 	manage_restaurant(rest);
       } else {
 	cout << "That was not one of the choices." << endl;
@@ -70,11 +87,10 @@ int main(){
     }
   } while(choice != 'q'); 
   
-  
   return 0;
 }
 
-void setup_b(){
+void setup_b(vector<Beach> & b_vtr){
   int a = 0;
   string word;
   char food[150];
@@ -101,10 +117,13 @@ void setup_b(){
   cout << "> ";
   cin.get(dir, 500);
   cin.get();
-  Beach b(vtr, dir, food);
-  b.read();
 
+  Beach b(vtr, dir, food);
+
+  b.read();
+  b_vtr.push_back(b);
   while(strcmp(yn, "n") != 0){
+    cout << " " << endl;
     cout << "Would you like to change any fields or look at more beach options? (y/n)" << endl;
     cout << "> ";
     cin.get(yn, 5);
@@ -113,6 +132,7 @@ void setup_b(){
       beach(b);
     }
   }
+  
 }
 
 void setup_s(){
@@ -151,6 +171,7 @@ void setup_s(){
   Shopping s(shops, items, bg);
   s.read();
   while(strcmp(yn, "n") != 0){
+    cout << " " << endl;
     cout << "Would you like to change any fields or look at more shopping options? (y/n)" << endl;
     cout << "> ";
     cin.get(yn, 5);
@@ -167,6 +188,7 @@ void setup_r(){
   r.read();
 
   while(strcmp(yn, "n") != 0){
+    cout << " " << endl;
     cout << "Would you like to change or view more restaurant options? (y/n)" << endl;
     cout << "> ";
     cin.get(yn, 5);
@@ -199,7 +221,7 @@ void beach(Beach & b){
   cin.ignore(1000, '\n');
 
   //add items
-  if (choice == 1){
+  if (choice == '1'){
     cout << "how many items would you like to add?" << endl;
     cout << "> ";
     cin >> amount;
@@ -214,7 +236,7 @@ void beach(Beach & b){
   }
 
   //remove items
-  else if (choice == 2){
+  else if (choice == '2'){
     cout << "how many items would you like to remove?" << endl;
     cout << "> ";
     cin >> amount;
@@ -229,17 +251,17 @@ void beach(Beach & b){
   }
 
   //display
-  else if (choice == 3){
+  else if (choice == '3'){
     b.display();
   }
 
   //check weather
-  else if (choice == 4){
+  else if (choice == '4'){
     b.check_weather();
   } 
 
   //fun fact
-  else if (choice == 5){
+  else if (choice == '5'){
     b.fun_fact();
   }
 
@@ -358,6 +380,8 @@ void restaurant(Restaurant & r){
 //manage beaches
 void manage_beach(vector<Beach> & b_vtr){
   char c;
+  char name[50];
+  
   cout << "Select an option. " << endl;
   cout << "1 - add another beach trip" << endl;
   cout << "2 - remove a beach trip" << endl;
@@ -365,7 +389,47 @@ void manage_beach(vector<Beach> & b_vtr){
   cout << "4 - remove all beach trips" << endl;
   cin >> c;
   cin.ignore(1000, '\n');
+
+  if(c == '1'){
+    setup_b(b_vtr);
+  } else if (c == '2'){
+    cout << "What is the name of the beach event you would like to remove?" << endl;
+    cin.get(name, 50);
+    cin.get();
+    rm_vtr(b_vtr, name);
+  } else if(c == '3'){
+    d_vtr(b_vtr);
+  }
 }
+
+//remove a specific beach
+void rm_vtr(vector<Beach> & b_vtr, char* name){
+  string str(name);
+  
+  for(vector<Beach>::iterator it = b_vtr.begin(); it!=b_vtr.end(); ++it){
+    if((*it).compare(str)){
+      b_vtr.erase(it);
+      break;
+    }
+  }
+ 
+}
+
+//display all beaches
+void d_vtr(vector<Beach> & b_vtr){
+  for(vector<Beach>::iterator i = b_vtr.begin(); i!=b_vtr.end(); ++i){
+    (*i).display();
+  }
+}
+
+//remove all beaches
+void rm_all(vector<Beach> & b_vtr){
+  for(vector<Beach>::iterator i = b_vtr.begin(); i!=b_vtr.end(); ++i){
+    b_vtr.erase(i);
+  }
+}
+
+
 
 //manage shopping
 void manage_shopping(Array & shop){
@@ -391,8 +455,11 @@ void manage_shopping(Array & shop){
     else {
       cout << "Could not find a Shopping event by that name." << endl;
     }
+  } else if(c == '3'){
+    shop.display();
+  } else if(c == '4'){
+    shop.remove_all();
   }
-
 }
 
 //manage restaurants

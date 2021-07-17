@@ -56,6 +56,7 @@ public:
   void remove_items(std::vector<std::string> to_remove); //remove items from the vector
   void display(); //display beach plan info
   void check_weather(); //displays a pretend weather forecast
+  bool compare(std::string n);
 protected:
   std::vector<std::string> items_to_bring; //what to bring
   char* directions; //directions to the beach

@@ -168,7 +168,8 @@ void Event::display() const {
 
 //initialization list to initialize all fields and call the parent constructor
 Beach::Beach() : Event(), directions(nullptr), food_plans(nullptr){
-
+  directions = new char[500];
+  food_plans = new char[150];
 }
 
 //destructor to deallocate all dynamic memory
@@ -189,6 +190,8 @@ Beach::Beach(const Beach & source){
 
 //set up beach fields
 Beach::Beach(std::vector<std::string> items, char* dir, char* f){
+  directions = new char[500];
+  food_plans = new char[150];
   items_to_bring = items;
   strcpy(directions, dir);
   strcpy(food_plans, f);
@@ -235,6 +238,11 @@ void Beach::check_weather(){
   int n = rand() % 36 + 75; //random number between 75 and 110 degrees
   std::cout << "It should be " << n << " degrees at the beach." << std::endl;
 }
+
+bool Beach::compare(std::string n){
+  return n == name;
+}
+
 
 //******************* SHOPPING FUNCTIONS *****************
 

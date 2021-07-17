@@ -31,6 +31,7 @@ public:
   void display(); //display the whole DS
   void remove_all(); //remove all nodes
   A_Node * find_shop(char* name);
+  bool is_empty();
 private:
   void insert(A_Node *& current, A_Node *& to_add);
   void remove(A_Node *& current, A_Node *& to_remove);
@@ -59,6 +60,7 @@ public:
   void remove(char* to_remove); //remove a node
   void display(); //wrapper to display all nodes
   void remove_all(); //remove all nodes;
+  bool is_empty();
 private:
   void remove(C_Node *& cur, std::string to_remove);
   void display(C_Node * cur); //recursive display

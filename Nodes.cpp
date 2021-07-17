@@ -180,6 +180,14 @@ A_Node* Array::find_shop(char* name){
   return nullptr;
 }
 
+//checks if array is empty
+bool Array::is_empty(){
+  for(int i = 0; i < size; i++){
+    if(head[i]) return false;
+  }
+  return true;
+}
+
 // ******************* C_NODE FUNCTIONS **************
 
 //constructor
@@ -258,8 +266,17 @@ void CLL::remove(char* to_remove){
 //remove the node whose name matches the one passed in
 void CLL::remove(C_Node *& cur, std::string name){
   if(cur->go_next() != rear){
+    if(cur->go_next()->compare(name)){
+      C_Node * temp = cur->go_next()->go_next();
+      delete cur->go_next();
+      cur->set_next(temp);
+    } else {
+      remove(cur->go_next(), name);
+    }
+  } else { //only node left
     if(cur->compare(name)){
       delete cur;
+      rear = nullptr;
     }
   }
 }
@@ -292,3 +309,8 @@ void CLL::remove_all(C_Node * cur){
   }
 }
 
+//checks if CLL is empty
+bool CLL::is_empty(){
+  if(rear == nullptr) return true;
+  return false;
+}

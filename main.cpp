@@ -234,7 +234,8 @@ void beach(Beach & b){
       cout << "> ";
       getline(cin, word);
       to_add.push_back(word);
-    }    
+    }
+    b.add_items(to_add);
   }
 
   //remove items
@@ -249,7 +250,8 @@ void beach(Beach & b){
       cout << "> ";
       getline(cin, word);
       to_remove.push_back(word);
-    }    
+    }
+    b.remove_items(to_remove);
   }
 
   //display

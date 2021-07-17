@@ -31,12 +31,14 @@ int main(){
     cout << " " << endl;
     cout << "-----------------------" << endl;
     cout << "Select an event to plan." << endl;
+    cout << "-----------------------" << endl;
     cout << "1 - Beach Trip" << endl;
     cout << "2 - Shopping Trip" << endl;
     cout << "3 - Restaurant" << endl;
     cout << " " << endl;
     cout << "OR" << endl;
     cout << "4 - Manage existing events (display all, delete, add, etc)" << endl;
+    cout << "0 - Help: How to use this interface" << endl;
     cout << "q - quit program" << endl;
     cin >> choice;
     cin.ignore(1000, '\n');
@@ -84,7 +86,16 @@ int main(){
       } else {
 	cout << "That was not one of the choices." << endl;
       }
-    }
+    } else if(choice == '0'){
+      cout << "Start by selecting one of the events to plan." << endl;
+      cout << "After successfully making an event, you can choose (y/n) to " << endl;
+      cout << "do specific operations on that event such as customize it " << endl;
+      cout << "or change details." << endl;
+      cout << " " << endl;
+      cout << "From the main screen, you can also choose to manage" << endl;
+      cout << "existing events. With this option, you can test the " << endl;
+      cout << "data structures." << endl;
+    } 
   } while(choice != 'q'); 
   
   return 0;
@@ -200,8 +211,6 @@ void setup_r(CLL & rest){
   }
   rest.insert(r);
 }
-
-
 
 
 // ******************************** BEACH SELECTIONS *************************************

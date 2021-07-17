@@ -20,7 +20,7 @@ A_Node::A_Node(){
 }
 
 //constructor to copy over the Shopping data
-A_Node::A_Node(const Shopping & source) {
+A_Node::A_Node(const Shopping & source) : Shopping(source){
   next = nullptr;
 }
 
